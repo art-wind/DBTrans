@@ -6,11 +6,18 @@ public class Room {
 	private int kcno;
 	private int ccno;
 	private String kname;
-	private Timestamp exptime;
+	private String exptime;
+	private String papername;
+	public String getPaperName() {
+		return papername;
+	}
+	public void setPaperName(String paperName) {
+		this.papername = paperName;
+	}
 	Room(){
 		
 	}
-	Room(int kdno,int kcno,int ccno,String kname,Timestamp exptime){
+	Room(int kdno,int kcno,int ccno,String kname,String exptime){
 		this.kdno=kdno;
 		this.kcno = kcno;
 		this.ccno = ccno;
@@ -41,10 +48,18 @@ public class Room {
 	public void setKname(String kname) {
 		this.kname = kname;
 	}
-	public Timestamp getExptime() {
+	public String getExptime() {
 		return exptime;
 	}
-	public void setExptime(Timestamp exptime) {
+	public void setExptime(String exptime) {
 		this.exptime = exptime;
 	}
+	public String generateSQL(String tableName)
+	{
+		String sql = "insert into room(kdno,kcno,ccno,kname,exptie,papername) values(?,?,?,?,?,?)";
+		//sql.
+		return sql;
+	}
+	
+	
 }

@@ -1,16 +1,55 @@
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.sql.Connection;
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.linuxense.javadbf.DBFField;
 import com.linuxense.javadbf.DBFReader;
+import com.mysql.jdbc.PreparedStatement;
 
 
 public class DBFParser {
-	public static void main(String[]args){
+	public static String insert_sql = "insert into room(kdno,kcno,ccno,kdname,exptime,papername) values(?,?,?,?,?,?)";
+	public static void main(String[]args) throws SQLException{
+		String driver = "com.mysql.jdbc.Driver";
+
+		// URL指向要访问的数据库名scutcs
+		String url = "jdbc:mysql://127.0.0.1:3306/DBTransfer?characterEncoding=utf8";
+
+		// MySQL配置时的用户名
+		String user = "root"; 
+
+		// MySQL配置时的密码
+		String password = "xkwin1793";
+		PreparedStatement ps = null;
+		try { 
+			// 加载驱动程序
+			Class.forName(driver);
+
+			// 连续数据库
+			Connection conn = DriverManager.getConnection(url, user, password);
+
+			if(!conn.isClosed()) 
+				System.out.println("Succeeded connecting to the Database!");
+
+			// statement用来执行SQL语句
+			ps = (PreparedStatement) conn.prepareStatement(insert_sql);
+			System.out.println(ps.getBytesRepresentation(0));
+			
+		} catch(ClassNotFoundException e) {
+
+			System.out.println("Sorry,can`t find the Driver!"); 
+			e.printStackTrace();
+		}
+
+		
+		
+		
+		
 		InputStream fis = null;   
 		String path="./data/Room_20040610.dbf";
 		try    
@@ -54,32 +93,24 @@ public class DBFParser {
 				//Number kdno = (Number) (rowValues[0]);
 				tmp.setKdno( Integer.parseInt((String)(rowValues[0])) );
 				
+				
 				Number kcno = (Number)(rowValues[1]);
 				tmp.setKcno ( kcno.intValue());
 				Number ccno = (Number)(rowValues[2]);
+				
 				tmp.setCcno( ccno.intValue() );
 				tmp.setKname((String)(rowValues[3]));
+				System.out.print((String)(rowValues[3]));
+				tmp.setExptime((String)(rowValues[4]));
+				tmp.setPaperName((String)(rowValues[5]));
 				
-				String expTime =(String)(rowValues[4]);
-				System.out.println(expTime.trim()+":00");
-				Timestamp ts=null;
-		        try {  
-		            ts = Timestamp.valueOf(expTime.trim()+":00");
-		              
-		        } catch (Exception e) {  
-		            e.printStackTrace();  
-		        }
-				
-				
-				tmp.setExptime(ts);
-				for( int i=0; i<rowValues.length; i++)    
-
-				{   
-
-					//System.out.println(rowValues[i]);   
-
-				}   
-
+				ps.setInt(1,tmp.getKdno());
+				ps.setInt(2,tmp.getKcno());
+				ps.setInt(3,tmp.getCcno());
+				ps.setString(4,tmp.getKname());
+				ps.setString(5, tmp.getExptime());
+				ps.setString(6, tmp.getPaperName());
+				ps.execute();
 			}   
 
 		}   
