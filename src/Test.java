@@ -129,7 +129,7 @@ public class Test {
 
 					// 首先使用ISO-8859-1字符集将name解码为字节序列并将结果存储新的字节数组中。
 					// 然后使用GB2312字符集解码指定的字节数组
-					name = new String(name.getBytes("ISO-8859-1"),"GB2312");
+					name = new String(name.getBytes("ISO-8859-1"),"UTF-8");
 
 					// 输出结果
 					System.out.println(rs.getString("address") + "\t" + name);

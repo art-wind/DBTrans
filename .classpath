@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="bin/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="lib" path="/Users/xubill/workspace/java/DBTrans/bin/poi-ooxml-schemas-3.10.1-20140818.jar"/>
 	<classpathentry kind="lib" path="/Users/xubill/workspace/java/DBTrans/bin/poi-ooxml-3.10.1-20140818.jar"/>
+	<classpathentry kind="lib" path="/Users/xubill/workspace/java/DBTrans/bin/javadbf.jar"/>
 	<classpathentry kind="output" path="src"/>
 </classpath>
