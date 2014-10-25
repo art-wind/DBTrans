@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import com.linuxense.javadbf.DBFField;
 import com.linuxense.javadbf.DBFReader;
@@ -99,7 +98,7 @@ public class DBFParser {
 				Number ccno = (Number)(rowValues[2]);
 				
 				tmp.setCcno( ccno.intValue() );
-				tmp.setKname((String)(rowValues[3]));
+				tmp.setKdname((String)(rowValues[3]));
 				System.out.print((String)(rowValues[3]));
 				tmp.setExptime((String)(rowValues[4]));
 				tmp.setPaperName((String)(rowValues[5]));
@@ -107,7 +106,7 @@ public class DBFParser {
 				ps.setInt(1,tmp.getKdno());
 				ps.setInt(2,tmp.getKcno());
 				ps.setInt(3,tmp.getCcno());
-				ps.setString(4,tmp.getKname());
+				ps.setString(4,tmp.getKdname());
 				ps.setString(5, tmp.getExptime());
 				ps.setString(6, tmp.getPaperName());
 				ps.execute();

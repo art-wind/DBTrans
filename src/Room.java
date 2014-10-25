@@ -1,11 +1,8 @@
-import java.sql.Timestamp;
-
-
 public class Room {
 	private int kdno;
 	private int kcno;
 	private int ccno;
-	private String kname;
+	private String kdname;
 	private String exptime;
 	private String papername;
 	public String getPaperName() {
@@ -21,7 +18,7 @@ public class Room {
 		this.kdno=kdno;
 		this.kcno = kcno;
 		this.ccno = ccno;
-		this.kname = kname;
+		this.kdname = kname;
 		this.exptime = exptime;
 	}
 	public int getKdno() {
@@ -42,11 +39,11 @@ public class Room {
 	public void setCcno(int ccno) {
 		this.ccno = ccno;
 	}
-	public String getKname() {
-		return kname;
+	public String getKdname() {
+		return kdname;
 	}
-	public void setKname(String kname) {
-		this.kname = kname;
+	public void setKdname(String kname) {
+		this.kdname = kname;
 	}
 	public String getExptime() {
 		return exptime;
