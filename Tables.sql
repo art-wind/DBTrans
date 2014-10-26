@@ -4,7 +4,7 @@ CREATE TABLE `room`.`room` (
   `kcno` INT NOT NULL,
   `ccno` INT NOT NULL,
   `kdname` INT NULL,
-  `exptime` DATETIME NULL,
+  `exptime` VARCHAR(45) NULL,
   `papername` VARCHAR(45) NULL,
   PRIMARY KEY (`knno`, `kcno`, `ccno`));
 CREATE TABLE `room`.`Student` (
